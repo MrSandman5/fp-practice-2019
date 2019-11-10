@@ -1,11 +1,11 @@
 module Task1_2 where
 
-{-
-  Задание 1.2
-  Необходимо реализовать четыре любые функции в данном файле
--}
-
 import Todo(todo)
+
+fact :: Integer -> Integer
+fact x | x == 0 = 1
+       | x > 0 = x * fact (x - 1)
+       | otherwise = error "arg must be >=0"
 
 -- синус числа (формула Тейлора)
 sin :: Double -> Double
@@ -16,12 +16,20 @@ cos :: Double -> Double
 cos x = todo
 
 -- наибольший общий делитель двух чисел
-gcd :: Integer -> Integer -> Integer
-gcd x y = todo
+gcd' :: Integer -> Integer -> Integer
+gcd' x 0 = x
+gcd' x y = gcd' b (mod a b)
+    where a = abs x
+          b = abs y 
 
 -- существует ли полный целочисленный квадрат в диапазоне [from, to)?
 doesSquareBetweenExist :: Integer -> Integer -> Bool
-doesSquareBetweenExist from to = todo
+doesSquareBetweenExist 0 0 = False
+doesSquareBetweenExist x 0 = False
+doesSquareBetweenExist x y | x == y = False
+                           | sq * sq == x = True 
+                           | otherwise    = doesSquareBetweenExist (x+1) y
+                           where sq = floor $ sqrt $ (fromIntegral x :: Double)
 
 -- является ли дата корректной с учётом количества дней в месяце и
 -- вискокосных годов?
@@ -31,11 +39,17 @@ isDateCorrect day month year = todo
 -- возведение числа в степень, duh
 -- готовые функции и плавающую арифметику использовать нельзя
 pow :: Integer -> Integer -> Integer
-pow x y = todo
+pow 0 0 = 0
+pow 0 y = 0
+pow x 0 = 1
+pow x y = x * pow x (y-1)
 
 -- является ли данное число простым?
 isPrime :: Integer -> Bool
-isPrime x = todo
+isPrime n | n == 1 = False
+          | n == 2 = True
+          | (length [x | x <- [2..n-1], mod n x == 0]) > 0 = False
+          | otherwise = True
 
 type Point2D = (Double, Double)
 
