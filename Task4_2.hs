@@ -30,7 +30,7 @@ instance Applicative FourOf where
 
 --The Monad class describes parameterized types for which operations are defined to organize a sequence of actions that can be described using the "do" syntax.
 instance Monad FourOf where
---`>>=` extract values (a b c d) from context and applies function f, which returns values in context, to each value. Then the values (fa fb fc fd) are extracted from the received four monads and placed in the context of the returned monad. The positions of the corresponding elements in the input set, in the output set, and in the set obtained as a result of applying the function f coincide. This allows you to implement the behavior described in the task.
+--`>>=` extract values (a b c d) from context and applies function f, which returns values in context, to each value. Then the values (fa fb fc fd) are extracted from the received four monads and placed in the context of the returned monad. The positions of the corresponding elements in the input set, in the output set, and in the set obtained as a result of applying the function f coincide.
     (FourOf a b c d) >>= f = FourOf fa fb fc fd where
         (FourOf fa _ _ _) = f a
         (FourOf _ fb _ _) = f b
